@@ -1,0 +1,22 @@
+graph TD;
+
+    subgraph "main.py"
+        A(Main Program) --> B(Object Detection Module)
+        B --> C(Tracker Module)
+        C --> D(Video Capture Module)
+    end
+
+    subgraph "Object Detection Module"
+        B --> E(Ultralytics YOLO)
+        B --> F(Pandas)
+        B --> G(NumPy)
+        B --> H(OpenCV)
+    end
+
+    subgraph "Tracker Module"
+        C --> I(Math Library)
+    end
+
+    subgraph "Video Capture Module"
+        D --> J(OpenCV)
+    end

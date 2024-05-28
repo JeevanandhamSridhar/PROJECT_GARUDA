@@ -1,0 +1,41 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor User as U
+actor Drone as D
+
+rectangle MainProgram {
+  usecase "Object Detection" as OD
+  usecase "Object Tracking" as OT
+  usecase "Video Capture" as VC
+  usecase "Display Results" as DR
+  U --> OD : Perform object detection
+  U --> OT : Track detected objects
+  U --> VC : Capture video frames
+  U --> DR : Display detection results
+  D --> OD : Transmit video feed
+  D --> VC : Transmit video feed
+}
+
+rectangle "Object Detection Module" {
+  usecase "Load YOLO Model" as LoadModel
+  usecase "Preprocess Frame" as Preprocess
+  usecase "Detect Objects" as DetectObjects
+  LoadModel --> Preprocess : Load model
+  Preprocess --> DetectObjects : Process frame
+}
+
+rectangle "Object Tracking Module" {
+  usecase "Initialize Tracker" as InitTracker
+  usecase "Update Object Positions" as UpdatePositions
+  InitTracker --> UpdatePositions : Track objects
+}
+
+rectangle "Video Capture Module" {
+  usecase "Open Video Stream" as OpenStream
+  usecase "Read Frame" as ReadFrame
+  OpenStream --> ReadFrame : Capture frames
+}
+
+@enduml

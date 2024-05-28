@@ -1,0 +1,42 @@
+@startuml
+class User {
+}
+
+class Drone {
+}
+
+class MainProgram {
+}
+
+class ObjectDetection {
+  + LoadModel()
+  + Preprocess()
+  + DetectObjects()
+}
+
+class ObjectTracking {
+  + InitTracker()
+  + UpdatePositions()
+}
+
+class VideoCapture {
+  + OpenStream()
+  + ReadFrame()
+}
+
+class DisplayResults {
+}
+
+User --> MainProgram : Uses
+Drone --> MainProgram : Provides Video Feed
+MainProgram --> ObjectDetection : Uses
+MainProgram --> ObjectTracking : Uses
+MainProgram --> VideoCapture : Uses
+MainProgram --> DisplayResults : Uses
+
+ObjectDetection --> ObjectDetection : Implements
+ObjectTracking --> ObjectTracking : Implements
+VideoCapture --> VideoCapture : Implements
+DisplayResults --> DisplayResults : Implements
+
+@enduml

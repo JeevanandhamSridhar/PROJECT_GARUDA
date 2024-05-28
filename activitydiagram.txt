@@ -1,0 +1,25 @@
+@startuml
+(*) --> "User initiates object detection"
+
+if "User triggers object detection" then
+  -->[true] "Main program initializes video capture"
+  --> "Main program reads video frame"
+  --> "Main program performs object detection"
+  --> "Main program updates object count"
+  --> "Main program displays detection results"
+  --> (*)
+else
+  -->[false] "System waits for user input"
+  --> (*)
+endif
+
+if "Objects detected" then
+  -->[true] "Tracker initializes object tracking"
+  --> "Tracker updates object positions"
+  --> "Main program displays tracking results"
+  --> (*)
+else
+  -->[false] "No objects detected, system waits"
+  --> (*)
+endif
+@enduml

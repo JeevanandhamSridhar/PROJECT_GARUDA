@@ -1,0 +1,20 @@
+@startuml
+participant User
+participant "Main Program" as MainProgram
+participant "Object Detection" as ObjectDetection
+participant "Tracker" as Tracker
+
+User -> MainProgram: Initiate Object Detection
+activate MainProgram
+MainProgram -> ObjectDetection: Perform Object Detection
+activate ObjectDetection
+ObjectDetection -> MainProgram: Objects Detected
+MainProgram -> Tracker: Initialize Object Tracking
+activate Tracker
+Tracker --> MainProgram: Object Positions Updated
+MainProgram --> User: Display Detection Results
+deactivate Tracker
+deactivate ObjectDetection
+deactivate MainProgram
+
+@enduml
